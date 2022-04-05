@@ -25,13 +25,6 @@ https://docs.microsoft.com/en-us/azure/developer/python/tutorial-deploy-app-serv
 Deploy Python apps to Azure App Service on Linux from Visual Studio Code
 
 
-
-3.- Change the password of the username 'postgres' in the postgres DB with ```ALTER USER postgres WITH PASSWORD 'abc123';```. Create a username called 'opexapp' (with password 'abc123') in Login/Group Roles. Give all possible privileges.
-
-The following are some of the arguments used by `master_db.py`:
-
-
-
 ## Testing
 
 Before deployment to Azure App Service, creating a virtual enviroment is recommended for a succesful local execution test:
