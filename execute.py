@@ -9,10 +9,13 @@ app = Flask(__name__)
 
 __logger_main = logging.getLogger("main")
 
-logger_flask = logging.getLogger('werkzeug') # grabs underlying WSGI logger
-logger_arlo = logging.getLogger('pyaarlo') # grabs underlying ARLO logger
-logger_flask.addHandler(constants.handler) # adds handler to the werkzeug WSGI logger
-logger_arlo.addHandler(constants.handler) # adds handler to the werkzeug ARLO logger
+__logger_flask = logging.getLogger('werkzeug') # grabs underlying WSGI logger
+__logger_arlo = logging.getLogger('pyaarlo') # grabs underlying ARLO logger
+__logger_flask.addHandler(constants.handler) # adds handler to the werkzeug WSGI logger
+__logger_arlo.addHandler(constants.handler) # adds handler to the werkzeug ARLO logger
+
+# Debug pyaarlo
+logging.getLogger('pyaarlo').setLevel(logging.INFO)
 
 @app.route("/")
 def execute():

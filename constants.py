@@ -9,14 +9,11 @@ import logging
 # Set Main Logger
 logging.basicConfig()
 __logger_main = logging.getLogger("main")
-__logger_main.setLevel(logging.DEBUG)
+__logger_main.setLevel(logging.INFO)
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 handler = logging.FileHandler('log_history.log') # creates handler for the log file
 handler.setFormatter(formatter)
 __logger_main.addHandler(handler) # adds handler to logger
-
-# Turn off SQLAlchemy logging
-logging.getLogger('sqlalchemy').setLevel(logging.WARNING)
 
 #########################################
 # Initialize
@@ -25,7 +22,6 @@ logging.getLogger('sqlalchemy').setLevel(logging.WARNING)
 # Get machine name (works in Windows and Linux)
 host_name = socket.gethostname()
 __logger_main.info("Using hostmachine:" + host_name)
-print(222)
 
 # Get environment variables
 load_dotenv()
@@ -72,6 +68,8 @@ params = urllib.parse.quote_plus(r'Driver=' + azure_sql_driver + ';'
 
 conn_str = 'mssql+pyodbc:///?odbc_connect={}'.format(params)
 engine = db.create_engine(conn_str, echo=False)
+# Turn off SQLAlchemy logging
+logging.getLogger('sqlalchemy').setLevel(logging.WARNING)
 
 __logger_main.info("Succesful connection to Azure SQL Server")
 
